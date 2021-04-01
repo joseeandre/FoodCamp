@@ -29,23 +29,35 @@ function fechar() {
     x = document.body.children;
 
     if (y.length == 3) {
-        const nome = prompt("Digite seu nome:");
-        const endereco = prompt("Digite seu endereco:");
-
-        for (var i = 0; i < x.length - 3; i++) {
+        for (var i = 0; i < x.length; i++) {
             x[i].style.filter = "opacity(20%)";
         }
         z[0].style.display = "flex";
+        z[0].style.filter = "opacity(100%)";
     }
+
+    let prato = y[0].id;
+    let bebida = y[1].id;
+    let sobremesa = y[2].id;
+    let price = Number(y[0].value) + Number(y[1].value) + Number(y[2].value);
+
+    let w = z[0].getElementsByClassName("texto-confirme");
+    w[0].innerHTML = prato;
+    w[1].innerHTML = y[0].value;
+    w[2].innerHTML = bebida;
+    w[3].innerHTML = y[1].value;
+    w[4].innerHTML = sobremesa;
+    w[5].innerHTML = y[2].value;
+    w[7].innerHTML = price.toFixed(2);
 }
 
 function cancelar() {
     let y = document.getElementsByClassName("selecionado");
     let z = document.getElementsByClassName("confirme");
-    x = document.body.children;
+    let x = document.body.children;
 
     if (y.length == 3) {
-        for (var i = 0; i < x.length - 3; i++) {
+        for (var i = 0; i < x.length; i++) {
             x[i].style.filter = "opacity(100%)";
         }
         z[0].style.display = "none";
@@ -53,9 +65,17 @@ function cancelar() {
 }
 
 function abreLink() {
-    url = "https://wa.me/5512981253244?text="
-    texto = "Olá, gostaria de fazer o pedido:\n- Prato: Frango Yin Yang\n- Bebida: Coquinha Gelada\n- Sobremesa: Pudim\nTotal: R$ 27.70";
-    url_zap = url + texto;
+    const nome = prompt("Digite seu nome:");
+    const endereco = prompt("Digite seu endereco:");
+    let y = document.getElementsByClassName("selecionado");
+    let url = "https://wa.me/5512981253244?text="
+    let prato = y[0].id;
+    let bebida = y[1].id;
+    let sobremesa = y[2].id;
+    let price = Number(y[0].value) + Number(y[1].value) + Number(y[2].value);
+
+    let texto = "Olá, gostaria de fazer o pedido:\n - Prato:" + prato + "\n - Bebida:" + bebida + "\n - Sobremesa:" + sobremesa + "\n Total:" + price.toFixed(2) + "\n \n Nome:" + nome + "\n Endereço:" + endereco;
+    let url_zap = url + texto;
 
     window.open(url_zap);
 }

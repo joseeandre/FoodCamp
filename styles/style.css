@@ -195,6 +195,12 @@ a {
     margin-bottom: 18px;
 }
 
+.confirme .texto-confirme {
+    font-size: 22px;
+    font-family: 'Roboto';
+    color: white;
+}
+
 .confirme .cancelar {
     font-size: 20px;
     font-weight: bold;
