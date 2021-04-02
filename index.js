@@ -74,7 +74,7 @@ function abreLink() {
     let sobremesa = y[2].id;
     let price = Number(y[0].value) + Number(y[1].value) + Number(y[2].value);
 
-    let texto = "Olá, gostaria de fazer o pedido:\n - Prato:" + prato + "\n - Bebida:" + bebida + "\n - Sobremesa:" + sobremesa + "\n Total:" + price.toFixed(2) + "\n \n Nome:" + nome + "\n Endereço:" + endereco;
+    let texto = encodeURIComponent("Olá, gostaria de fazer um pedido: \n - Prato: " + prato + "\n - Bebida: " + bebida + "\n - Sobremesa: " + sobremesa + "\n Total: " + price.toFixed(2) + "\n \n Nome: " + nome + "\n Endereço: " + endereco);
     let url_zap = url + texto;
 
     window.open(url_zap);
