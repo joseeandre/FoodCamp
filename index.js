@@ -1,78 +1,75 @@
-function selecionar(clicked_id, refeicao) {
+function selecionar(id_clicado, refeicao) {
     let pai = document.getElementById(refeicao);
-    let count = pai.getElementsByClassName("selecionado");
-    let x = document.getElementById(clicked_id);
+    let elemento_selecionado = pai.getElementsByClassName("selecionado");
+    let elemento_clicado = document.getElementById(id_clicado);
 
-    if (count.length == 0) {
-        x.classList.add("selecionado");
+    if (elemento_selecionado.length == 0) {
+        elemento_clicado.classList.add("selecionado");
     } else {
-        count[0].classList.remove("selecionado");
-        x.classList.add("selecionado");
+        elemento_selecionado[0].classList.remove("selecionado");
+        elemento_clicado.classList.add("selecionado");
     }
 
-    let y = document.getElementsByClassName("selecionado");
-    let z = document.getElementsByClassName("concluir-pedido");
-    let w = z[0].getElementsByClassName("texto");
+    let total_selecionado = document.getElementsByClassName("selecionado");
+    let botao_concluir = document.getElementsByClassName("concluir-pedido");
+    let fechar_pedido = botao_concluir[0].getElementsByClassName("texto");
 
-    if (y.length == 3) {
-        z[0].style["background-color"] = "#32B72F";
-        w[0].innerHTML = "Fechar pedido"
-    } else {
-        z[0].style["background-color"] = "#CBCBCB";
-        w[0].innerHTML = "Selecione os 3 itens para fechar o pedido"
+    if (total_selecionado.length == 3) {
+        botao_concluir[0].style["background-color"] = "#32B72F";
+        fechar_pedido[0].innerHTML = "Fechar pedido"
     }
 }
 
 function fechar() {
-    let y = document.getElementsByClassName("selecionado");
-    let z = document.getElementsByClassName("confirme");
-    x = document.body.children;
+    let total_selecionado = document.getElementsByClassName("selecionado");
+    let confirmar_pedido = document.getElementsByClassName("confirme");
+    let total_filhos = document.body.children;
 
-    if (y.length == 3) {
-        for (var i = 0; i < x.length; i++) {
-            x[i].style.filter = "opacity(20%)";
+    if (total_selecionado.length == 3) {
+        for (var i = 0; i < total_filhos.length; i++) {
+            total_filhos[i].style.filter = "opacity(20%)";
         }
-        z[0].style.display = "flex";
-        z[0].style.filter = "opacity(100%)";
+        confirmar_pedido[0].style.display = "flex";
+        confirmar_pedido[0].style.filter = "opacity(100%)";
     }
 
-    let prato = y[0].id;
-    let bebida = y[1].id;
-    let sobremesa = y[2].id;
-    let price = Number(y[0].value) + Number(y[1].value) + Number(y[2].value);
+    let prato = total_selecionado[0].id;
+    let bebida = total_selecionado[1].id;
+    let sobremesa = total_selecionado[2].id;
+    let price = Number(total_selecionado[0].value) + Number(total_selecionado[1].value) + Number(total_selecionado[2].value);
 
-    let w = z[0].getElementsByClassName("texto-confirme");
-    w[0].innerHTML = prato;
-    w[1].innerHTML = y[0].value;
-    w[2].innerHTML = bebida;
-    w[3].innerHTML = y[1].value;
-    w[4].innerHTML = sobremesa;
-    w[5].innerHTML = y[2].value;
-    w[7].innerHTML = price.toFixed(2);
+    let pratos_pedido = confirmar_pedido[0].getElementsByClassName("texto-confirme");
+    pratos_pedido[0].innerHTML = prato;
+    pratos_pedido[1].innerHTML = total_selecionado[0].value;
+    pratos_pedido[2].innerHTML = bebida;
+    pratos_pedido[3].innerHTML = total_selecionado[1].value;
+    pratos_pedido[4].innerHTML = sobremesa;
+    pratos_pedido[5].innerHTML = total_selecionado[2].value;
+    pratos_pedido[7].innerHTML = price.toFixed(2);
 }
 
 function cancelar() {
-    let y = document.getElementsByClassName("selecionado");
-    let z = document.getElementsByClassName("confirme");
-    let x = document.body.children;
+    let total_selecionado = document.getElementsByClassName("selecionado");
+    let confirmar_pedido = document.getElementsByClassName("confirme");
+    let total_filhos = document.body.children;
 
-    if (y.length == 3) {
-        for (var i = 0; i < x.length; i++) {
-            x[i].style.filter = "opacity(100%)";
+    if (total_selecionado.length == 3) {
+        for (var i = 0; i < total_filhos.length; i++) {
+            total_filhos[i].style.filter = "opacity(100%)";
         }
-        z[0].style.display = "none";
+        confirmar_pedido[0].style.display = "none";
     }
 }
 
 function abreLink() {
     const nome = prompt("Digite seu nome:");
     const endereco = prompt("Digite seu endereco:");
-    let y = document.getElementsByClassName("selecionado");
+    let total_selecionado = document.getElementsByClassName("selecionado");
     let url = "https://wa.me/5512981253244?text="
-    let prato = y[0].id;
-    let bebida = y[1].id;
-    let sobremesa = y[2].id;
-    let price = Number(y[0].value) + Number(y[1].value) + Number(y[2].value);
+    let prato = total_selecionado[0].id;
+    let bebida = total_selecionado[1].id;
+    let sobremesa = total_selecionado[2].id;
+    let price = Number(total_selecionado[0].value) + Number(total_selecionado[1].value) + Number(total_selecionado[2].value);
 
     let texto = encodeURIComponent("Olá, gostaria de fazer um pedido: \n - Prato: " + prato + "\n - Bebida: " + bebida + "\n - Sobremesa: " + sobremesa + "\n Total: " + price.toFixed(2) + "\n \n Nome: " + nome + "\n Endereço: " + endereco);
     let url_zap = url + texto;
