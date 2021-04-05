@@ -65,7 +65,7 @@ function abreLink() {
     const nome = prompt("Digite seu nome:");
     const endereco = prompt("Digite seu endereco:");
     let total_selecionado = document.getElementsByClassName("selecionado");
-    let url = "https://wa.me/5512981253244?text="
+    let url = "https://wa.me/5500000000000?text="
     let prato = total_selecionado[0].id;
     let bebida = total_selecionado[1].id;
     let sobremesa = total_selecionado[2].id;
